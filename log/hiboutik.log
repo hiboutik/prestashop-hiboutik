@@ -1,0 +1,817 @@
+
+[22-Jan-2019 15:49:21 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 15:49:52 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 15:49:59 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 15:51:44 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 15:51:58 Europe/Paris] aaa
+[22-Jan-2019 15:51:59 Europe/Paris] aaa
+[22-Jan-2019 15:52:00 Europe/Paris] aaa
+[22-Jan-2019 15:52:34 Europe/Paris] Array
+(
+    [order_id] => 202
+    [sale_id] => 202
+    [unique_order_id] => 2019-01-1-37
+    [shop_id] => 1
+    [vendor_id] => 18
+    [customer_id] => 0
+    [user_id] => 18
+    [date_time] => 2019-01-22 15:52:34
+    [created_at] => 2019-01-22 15:52:29
+    [completed_at] => 2019-01-22 15:52:34
+    [store_id] => 1
+    [unique_sale_id] => 2019-01-1-37
+    [currency] => EUR
+    [total] => 10.00
+    [billing_address] => 0
+    [shipping_address] => 0
+    [payment] => CB
+    [without_taxes] => 0
+    [prices_without_taxes] => 0
+    [ressource_id] => 52
+    [points] => 0
+    [sale_ext_ref] => 
+    [vat_number] => 
+    [completed_at_date] => 2019-01-22
+    [created_at_date] => 2019-01-22
+    [ressource_name] => Table 52
+    [line_items] => Array
+        (
+            [0] => Array
+                (
+                    [product_id] => 70
+                    [product_size] => 0
+                    [quantity] => 1
+                    [product_price] => 10.0000
+                    [product_currency] => EUR
+                    [vat] => 0.10000
+                    [package] => 0
+                    [points] => 0
+                    [discount] => 0.00
+                    [stock_withdrawal] => 1
+                    [credit_note] => 0
+                    [credit_note_id] => 0
+                    [product_comments] => 
+                    [serial_number] => 
+                    [line_item_id] => 799
+                    [detail_commande_id] => 799
+                    [item_unit_net] => 9.0909
+                    [item_unit_tax] => 0.9091
+                    [item_unit_gross] => 10.0000
+                    [item_discount_net] => 0.0000
+                    [item_discount_tax] => 0.0000
+                    [item_discount_gross] => 0.0000
+                    [item_total_net] => 9.0909
+                    [item_total_gross] => 10.0000
+                    [item_total_tax] => 0.9091
+                    [tax_label] => Taux intermédiaire 10%
+                    [product_model] => Sandwich
+                    [product_barcode] => 2430000000706
+                    [product_brand] => 82
+                    [product_supplier] => 0
+                    [product_category] => 0
+                    [product_size_type] => 0
+                    [product_package] => 0
+                    [product_stock_management] => 0
+                    [product_supplier_reference] => 
+                    [product_desc] => 
+                    [product_arch] => 0
+                    [tags] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [tag_id] => 24
+                                    [tag_label] => BA téléphonie
+                                    [tag_cat] => 23
+                                )
+
+                        )
+
+                    [modifiers] => 
+                )
+
+        )
+
+    [sale_total_net] => 9.09
+    [sale_total_tax] => 0.91
+    [sale_total_gross] => 10.00
+    [taxes] => Array
+        (
+            [0] => Array
+                (
+                    [tax_value] => 0.10000
+                    [tax_label] => Taux intermédiaire 10%
+                    [total_net] => 9.09
+                    [total_vat] => 0.91
+                    [total_gross] => 10.00
+                )
+
+        )
+
+)
+
+[22-Jan-2019 15:53:10 Europe/Paris] Array
+(
+    [order_id] => 203
+    [sale_id] => 203
+    [unique_order_id] => 2019-01-1-38
+    [shop_id] => 1
+    [vendor_id] => 18
+    [customer_id] => 0
+    [user_id] => 18
+    [date_time] => 2019-01-22 15:53:09
+    [created_at] => 2019-01-22 15:52:53
+    [completed_at] => 2019-01-22 15:53:09
+    [store_id] => 1
+    [unique_sale_id] => 2019-01-1-38
+    [currency] => EUR
+    [total] => 99.80
+    [billing_address] => 0
+    [shipping_address] => 0
+    [payment] => CB
+    [without_taxes] => 0
+    [prices_without_taxes] => 0
+    [ressource_id] => 52
+    [points] => 0
+    [sale_ext_ref] => 
+    [vat_number] => 
+    [completed_at_date] => 2019-01-22
+    [created_at_date] => 2019-01-22
+    [ressource_name] => Table 52
+    [line_items] => Array
+        (
+            [0] => Array
+                (
+                    [product_id] => 38
+                    [product_size] => 2
+                    [quantity] => 1
+                    [product_price] => 99.8000
+                    [product_currency] => EUR
+                    [vat] => 0.20000
+                    [package] => 0
+                    [points] => 0
+                    [discount] => 0.00
+                    [stock_withdrawal] => 1
+                    [credit_note] => 0
+                    [credit_note_id] => 0
+                    [product_comments] => 
+                    [serial_number] => 
+                    [line_item_id] => 800
+                    [detail_commande_id] => 800
+                    [item_unit_net] => 83.1667
+                    [item_unit_tax] => 16.6333
+                    [item_unit_gross] => 99.8000
+                    [item_discount_net] => 0.0000
+                    [item_discount_tax] => 0.0000
+                    [item_discount_gross] => 0.0000
+                    [item_total_net] => 83.1667
+                    [item_total_gross] => 99.8000
+                    [item_total_tax] => 16.6333
+                    [tax_label] => Taux normal 20%
+                    [product_model] => Chemise à carreaux bleus
+                    [product_barcode] => 905782
+                    [product_brand] => 0
+                    [product_supplier] => 1
+                    [product_category] => 0
+                    [product_size_type] => 1
+                    [product_package] => 0
+                    [product_stock_management] => 1
+                    [product_supplier_reference] => 
+                    [product_desc] => 
+                    [product_arch] => 0
+                    [size_name] => M
+                    [tags] => 
+                    [modifiers] => 
+                )
+
+        )
+
+    [sale_total_net] => 83.17
+    [sale_total_tax] => 16.63
+    [sale_total_gross] => 99.80
+    [taxes] => Array
+        (
+            [0] => Array
+                (
+                    [tax_value] => 0.20000
+                    [tax_label] => Taux normal 20%
+                    [total_net] => 83.17
+                    [total_vat] => 16.63
+                    [total_gross] => 99.80
+                )
+
+        )
+
+)
+
+[22-Jan-2019 16:37:49 Europe/Paris] Array
+(
+    [order_id] => 205
+    [sale_id] => 205
+    [unique_order_id] => 2019-01-1-40
+    [shop_id] => 1
+    [vendor_id] => 18
+    [customer_id] => 0
+    [user_id] => 18
+    [date_time] => 2019-01-22 16:37:49
+    [created_at] => 2019-01-22 16:37:37
+    [completed_at] => 2019-01-22 16:37:49
+    [store_id] => 1
+    [unique_sale_id] => 2019-01-1-40
+    [currency] => EUR
+    [total] => 62.00
+    [billing_address] => 0
+    [shipping_address] => 0
+    [payment] => CB
+    [without_taxes] => 0
+    [prices_without_taxes] => 0
+    [ressource_id] => 0
+    [points] => 0
+    [sale_ext_ref] => 
+    [vat_number] => 
+    [completed_at_date] => 2019-01-22
+    [created_at_date] => 2019-01-22
+    [line_items] => Array
+        (
+            [0] => Array
+                (
+                    [product_id] => 42
+                    [product_size] => 2
+                    [quantity] => 1
+                    [product_price] => 62.0000
+                    [product_currency] => EUR
+                    [vat] => 0.20000
+                    [package] => 0
+                    [points] => 0
+                    [discount] => 0.00
+                    [stock_withdrawal] => 1
+                    [credit_note] => 0
+                    [credit_note_id] => 0
+                    [product_comments] => 
+                    [serial_number] => 
+                    [line_item_id] => 803
+                    [detail_commande_id] => 803
+                    [item_unit_net] => 51.6667
+                    [item_unit_tax] => 10.3333
+                    [item_unit_gross] => 62.0000
+                    [item_discount_net] => 0.0000
+                    [item_discount_tax] => 0.0000
+                    [item_discount_gross] => 0.0000
+                    [item_total_net] => 51.6667
+                    [item_total_gross] => 62.0000
+                    [item_total_tax] => 10.3333
+                    [tax_label] => Taux normal 20%
+                    [product_model] => chemise à rayures jaunes
+                    [product_barcode] => 2430020000427
+                    [product_brand] => 0
+                    [product_supplier] => 1
+                    [product_category] => 0
+                    [product_size_type] => 1
+                    [product_package] => 0
+                    [product_stock_management] => 1
+                    [product_supplier_reference] => 
+                    [product_desc] => 
+                    [product_arch] => 0
+                    [size_name] => M
+                    [tags] => 
+                    [modifiers] => 
+                )
+
+        )
+
+    [sale_total_net] => 51.67
+    [sale_total_tax] => 10.33
+    [sale_total_gross] => 62.00
+    [taxes] => Array
+        (
+            [0] => Array
+                (
+                    [tax_value] => 0.20000
+                    [tax_label] => Taux normal 20%
+                    [total_net] => 51.67
+                    [total_vat] => 10.33
+                    [total_gross] => 62.00
+                )
+
+        )
+
+)
+
+[22-Jan-2019 16:42:32 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 16:42:48 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 16:54:51 Europe/Paris] Array
+(
+    [order_id] => 206
+    [sale_id] => 206
+    [unique_order_id] => 2019-01-1-41
+    [shop_id] => 1
+    [vendor_id] => 18
+    [customer_id] => 0
+    [user_id] => 18
+    [date_time] => 2019-01-22 16:54:51
+    [created_at] => 2019-01-22 16:54:41
+    [completed_at] => 2019-01-22 16:54:51
+    [store_id] => 1
+    [unique_sale_id] => 2019-01-1-41
+    [currency] => EUR
+    [total] => 62.00
+    [billing_address] => 0
+    [shipping_address] => 0
+    [payment] => CB
+    [without_taxes] => 0
+    [prices_without_taxes] => 0
+    [ressource_id] => 0
+    [points] => 0
+    [sale_ext_ref] => 
+    [vat_number] => 
+    [completed_at_date] => 2019-01-22
+    [created_at_date] => 2019-01-22
+    [line_items] => Array
+        (
+            [0] => Array
+                (
+                    [product_id] => 42
+                    [product_size] => 3
+                    [quantity] => 1
+                    [product_price] => 62.0000
+                    [product_currency] => EUR
+                    [vat] => 0.20000
+                    [package] => 0
+                    [points] => 0
+                    [discount] => 0.00
+                    [stock_withdrawal] => 1
+                    [credit_note] => 0
+                    [credit_note_id] => 0
+                    [product_comments] => 
+                    [serial_number] => 
+                    [line_item_id] => 804
+                    [detail_commande_id] => 804
+                    [item_unit_net] => 51.6667
+                    [item_unit_tax] => 10.3333
+                    [item_unit_gross] => 62.0000
+                    [item_discount_net] => 0.0000
+                    [item_discount_tax] => 0.0000
+                    [item_discount_gross] => 0.0000
+                    [item_total_net] => 51.6667
+                    [item_total_gross] => 62.0000
+                    [item_total_tax] => 10.3333
+                    [tax_label] => Taux normal 20%
+                    [product_model] => chemise à rayures jaunes
+                    [product_barcode] => 2430030000424
+                    [product_brand] => 0
+                    [product_supplier] => 1
+                    [product_category] => 0
+                    [product_size_type] => 1
+                    [product_package] => 0
+                    [product_stock_management] => 1
+                    [product_supplier_reference] => 
+                    [product_desc] => 
+                    [product_arch] => 0
+                    [size_name] => L
+                    [tags] => 
+                    [modifiers] => 
+                )
+
+        )
+
+    [sale_total_net] => 51.67
+    [sale_total_tax] => 10.33
+    [sale_total_gross] => 62.00
+    [taxes] => Array
+        (
+            [0] => Array
+                (
+                    [tax_value] => 0.20000
+                    [tax_label] => Taux normal 20%
+                    [total_net] => 51.67
+                    [total_vat] => 10.33
+                    [total_gross] => 62.00
+                )
+
+        )
+
+)
+
+[22-Jan-2019 16:55:39 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 17:13:24 Europe/Paris] Array
+(
+    [order_id] => 206
+    [sale_id] => 206
+    [unique_order_id] => 2019-01-1-41
+    [shop_id] => 1
+    [vendor_id] => 18
+    [customer_id] => 0
+    [user_id] => 18
+    [date_time] => 2019-01-22 16:54:51
+    [created_at] => 2019-01-22 16:54:41
+    [completed_at] => 2019-01-22 16:54:51
+    [store_id] => 1
+    [unique_sale_id] => 2019-01-1-41
+    [currency] => EUR
+    [total] => 62
+    [billing_address] => 0
+    [shipping_address] => 0
+    [payment] => CB
+    [without_taxes] => 0
+    [prices_without_taxes] => 0
+    [ressource_id] => 0
+    [points] => 0
+    [sale_ext_ref] => 
+    [vat_number] => 
+    [completed_at_date] => 2019-01-22
+    [created_at_date] => 2019-01-22
+    [line_items] => Array
+        (
+            [0] => Array
+                (
+                    [product_id] => 42
+                    [product_size] => 3
+                    [quantity] => 1
+                    [product_price] => 62
+                    [product_currency] => EUR
+                    [vat] => 0.2
+                    [package] => 0
+                    [points] => 0
+                    [discount] => 0
+                    [stock_withdrawal] => 1
+                    [credit_note] => 0
+                    [credit_note_id] => 0
+                    [product_comments] => 
+                    [serial_number] => 
+                    [line_item_id] => 804
+                    [detail_commande_id] => 804
+                    [item_unit_net] => 51.6667
+                    [item_unit_tax] => 10.3333
+                    [item_unit_gross] => 62
+                    [item_discount_net] => 0
+                    [item_discount_tax] => 0
+                    [item_discount_gross] => 0
+                    [item_total_net] => 51.6667
+                    [item_total_gross] => 62
+                    [item_total_tax] => 10.3333
+                    [tax_label] => Taux normal 20%
+                    [product_model] => chemise à rayures jaunes
+                    [product_barcode] => 2430030000424
+                    [product_brand] => 0
+                    [product_supplier] => 1
+                    [product_category] => 0
+                    [product_size_type] => 1
+                    [product_package] => 0
+                    [product_stock_management] => 1
+                    [product_supplier_reference] => 
+                    [product_desc] => 
+                    [product_arch] => 0
+                    [size_name] => L
+                    [tags] => 
+                    [modifiers] => 
+                )
+
+        )
+
+    [sale_total_net] => 51.67
+    [sale_total_tax] => 10.33
+    [sale_total_gross] => 62
+    [taxes] => Array
+        (
+            [0] => Array
+                (
+                    [tax_value] => 0.2
+                    [tax_label] => Taux normal 20%
+                    [total_net] => 51.67
+                    [total_vat] => 10.33
+                    [total_gross] => 62
+                )
+
+        )
+
+)
+
+[22-Jan-2019 17:13:27 Europe/Paris] Array
+(
+    [order_id] => 206
+    [sale_id] => 206
+    [unique_order_id] => 2019-01-1-41
+    [shop_id] => 1
+    [vendor_id] => 18
+    [customer_id] => 0
+    [user_id] => 18
+    [date_time] => 2019-01-22 16:54:51
+    [created_at] => 2019-01-22 16:54:41
+    [completed_at] => 2019-01-22 16:54:51
+    [store_id] => 1
+    [unique_sale_id] => 2019-01-1-41
+    [currency] => EUR
+    [total] => 62
+    [billing_address] => 0
+    [shipping_address] => 0
+    [payment] => CB
+    [without_taxes] => 0
+    [prices_without_taxes] => 0
+    [ressource_id] => 0
+    [points] => 0
+    [sale_ext_ref] => 
+    [vat_number] => 
+    [completed_at_date] => 2019-01-22
+    [created_at_date] => 2019-01-22
+    [line_items] => Array
+        (
+            [0] => Array
+                (
+                    [product_id] => 42
+                    [product_size] => 3
+                    [quantity] => 1
+                    [product_price] => 62
+                    [product_currency] => EUR
+                    [vat] => 0.2
+                    [package] => 0
+                    [points] => 0
+                    [discount] => 0
+                    [stock_withdrawal] => 1
+                    [credit_note] => 0
+                    [credit_note_id] => 0
+                    [product_comments] => 
+                    [serial_number] => 
+                    [line_item_id] => 804
+                    [detail_commande_id] => 804
+                    [item_unit_net] => 51.6667
+                    [item_unit_tax] => 10.3333
+                    [item_unit_gross] => 62
+                    [item_discount_net] => 0
+                    [item_discount_tax] => 0
+                    [item_discount_gross] => 0
+                    [item_total_net] => 51.6667
+                    [item_total_gross] => 62
+                    [item_total_tax] => 10.3333
+                    [tax_label] => Taux normal 20%
+                    [product_model] => chemise à rayures jaunes
+                    [product_barcode] => 2430030000424
+                    [product_brand] => 0
+                    [product_supplier] => 1
+                    [product_category] => 0
+                    [product_size_type] => 1
+                    [product_package] => 0
+                    [product_stock_management] => 1
+                    [product_supplier_reference] => 
+                    [product_desc] => 
+                    [product_arch] => 0
+                    [size_name] => L
+                    [tags] => 
+                    [modifiers] => 
+                )
+
+        )
+
+    [sale_total_net] => 51.67
+    [sale_total_tax] => 10.33
+    [sale_total_gross] => 62
+    [taxes] => Array
+        (
+            [0] => Array
+                (
+                    [tax_value] => 0.2
+                    [tax_label] => Taux normal 20%
+                    [total_net] => 51.67
+                    [total_vat] => 10.33
+                    [total_gross] => 62
+                )
+
+        )
+
+)
+
+[22-Jan-2019 17:14:33 Europe/Paris] Array
+(
+    [order_id] => 206
+    [sale_id] => 206
+    [unique_order_id] => 2019-01-1-41
+    [shop_id] => 1
+    [vendor_id] => 18
+    [customer_id] => 0
+    [user_id] => 18
+    [date_time] => 2019-01-22 16:54:51
+    [created_at] => 2019-01-22 16:54:41
+    [completed_at] => 2019-01-22 16:54:51
+    [store_id] => 1
+    [unique_sale_id] => 2019-01-1-41
+    [currency] => EUR
+    [total] => 62
+    [billing_address] => 0
+    [shipping_address] => 0
+    [payment] => CB
+    [without_taxes] => 0
+    [prices_without_taxes] => 0
+    [ressource_id] => 0
+    [points] => 0
+    [sale_ext_ref] => 
+    [vat_number] => 
+    [completed_at_date] => 2019-01-22
+    [created_at_date] => 2019-01-22
+    [line_items] => Array
+        (
+            [0] => Array
+                (
+                    [product_id] => 42
+                    [product_size] => 3
+                    [quantity] => 1
+                    [product_price] => 62
+                    [product_currency] => EUR
+                    [vat] => 0.2
+                    [package] => 0
+                    [points] => 0
+                    [discount] => 0
+                    [stock_withdrawal] => 1
+                    [credit_note] => 0
+                    [credit_note_id] => 0
+                    [product_comments] => 
+                    [serial_number] => 
+                    [line_item_id] => 804
+                    [detail_commande_id] => 804
+                    [item_unit_net] => 51.6667
+                    [item_unit_tax] => 10.3333
+                    [item_unit_gross] => 62
+                    [item_discount_net] => 0
+                    [item_discount_tax] => 0
+                    [item_discount_gross] => 0
+                    [item_total_net] => 51.6667
+                    [item_total_gross] => 62
+                    [item_total_tax] => 10.3333
+                    [tax_label] => Taux normal 20%
+                    [product_model] => chemise à rayures jaunes
+                    [product_barcode] => 2430030000424
+                    [product_brand] => 0
+                    [product_supplier] => 1
+                    [product_category] => 0
+                    [product_size_type] => 1
+                    [product_package] => 0
+                    [product_stock_management] => 1
+                    [product_supplier_reference] => 
+                    [product_desc] => 
+                    [product_arch] => 0
+                    [size_name] => L
+                    [tags] => 
+                    [modifiers] => 
+                )
+
+        )
+
+    [sale_total_net] => 51.67
+    [sale_total_tax] => 10.33
+    [sale_total_gross] => 62
+    [taxes] => Array
+        (
+            [0] => Array
+                (
+                    [tax_value] => 0.2
+                    [tax_label] => Taux normal 20%
+                    [total_net] => 51.67
+                    [total_vat] => 10.33
+                    [total_gross] => 62
+                )
+
+        )
+
+)
+
+[22-Jan-2019 17:34:40 Europe/Paris] Array
+(
+    [order_id] => 207
+    [sale_id] => 207
+    [unique_order_id] => 2019-01-1-42
+    [shop_id] => 1
+    [vendor_id] => 18
+    [customer_id] => 0
+    [user_id] => 18
+    [date_time] => 2019-01-22 17:34:40
+    [created_at] => 2019-01-22 17:34:32
+    [completed_at] => 2019-01-22 17:34:40
+    [store_id] => 1
+    [unique_sale_id] => 2019-01-1-42
+    [currency] => EUR
+    [total] => 62.00
+    [billing_address] => 0
+    [shipping_address] => 0
+    [payment] => CB
+    [without_taxes] => 0
+    [prices_without_taxes] => 0
+    [ressource_id] => 0
+    [points] => 0
+    [sale_ext_ref] => 
+    [vat_number] => 
+    [completed_at_date] => 2019-01-22
+    [created_at_date] => 2019-01-22
+    [line_items] => Array
+        (
+            [0] => Array
+                (
+                    [product_id] => 42
+                    [product_size] => 4
+                    [quantity] => 1
+                    [product_price] => 62.0000
+                    [product_currency] => EUR
+                    [vat] => 0.20000
+                    [package] => 0
+                    [points] => 0
+                    [discount] => 0.00
+                    [stock_withdrawal] => 1
+                    [credit_note] => 0
+                    [credit_note_id] => 0
+                    [product_comments] => 
+                    [serial_number] => 
+                    [line_item_id] => 805
+                    [detail_commande_id] => 805
+                    [item_unit_net] => 51.6667
+                    [item_unit_tax] => 10.3333
+                    [item_unit_gross] => 62.0000
+                    [item_discount_net] => 0.0000
+                    [item_discount_tax] => 0.0000
+                    [item_discount_gross] => 0.0000
+                    [item_total_net] => 51.6667
+                    [item_total_gross] => 62.0000
+                    [item_total_tax] => 10.3333
+                    [tax_label] => Taux normal 20%
+                    [product_model] => chemise à rayures jaunes
+                    [product_barcode] => 2430040000421
+                    [product_brand] => 0
+                    [product_supplier] => 1
+                    [product_category] => 0
+                    [product_size_type] => 1
+                    [product_package] => 0
+                    [product_stock_management] => 1
+                    [product_supplier_reference] => 
+                    [product_desc] => 
+                    [product_arch] => 0
+                    [size_name] => XL
+                    [tags] => 
+                    [modifiers] => 
+                )
+
+        )
+
+    [sale_total_net] => 51.67
+    [sale_total_tax] => 10.33
+    [sale_total_gross] => 62.00
+    [taxes] => Array
+        (
+            [0] => Array
+                (
+                    [tax_value] => 0.20000
+                    [tax_label] => Taux normal 20%
+                    [total_net] => 51.67
+                    [total_vat] => 10.33
+                    [total_gross] => 62.00
+                )
+
+        )
+
+)
+
+[22-Jan-2019 18:00:15 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 18:00:27 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 18:00:39 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 18:00:43 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 18:01:19 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 18:05:25 Europe/Paris] Array
+(
+)
+
+[22-Jan-2019 18:29:06 Europe/Paris] Array
+(
+    [fc] => module
+    [module] => hiboutik
+    [controller] => Sync
+)
