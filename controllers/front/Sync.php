@@ -1,4 +1,6 @@
 <?php
+use PrestaShop\PrestaShop\Core\Order\OrderCore;
+
 
 /**
  * <ModuleName> => Hiboutik
@@ -53,11 +55,28 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
       exit();
     }
 
-    if (isset($_POST['line_items'])) {
-      $config = Hiboutik::getHiboutikConfiguration();
+    $config = Hiboutik::getHiboutikConfiguration();
 
+    // Abort if the sale closed in Hiboutik was created initially in Prestashop
+    if (isset($_POST['sale_ext_ref']) and strpos($_POST['sale_ext_ref'], $config['HIBOUTIK_SALE_ID_PREFIX']) === 0) {
+      $sale_no = substr($_POST['sale_ext_ref'], strlen($config['HIBOUTIK_SALE_ID_PREFIX']));
+      $order = new Order($sale_no);
+      if ($order->current_state !== null) {
+//         $json_msg->alert('info', "This sale was created in Prestashop")->show();
+        exit();
+      }
+    }
+
+    if (isset($_POST['line_items'])) {
       $hiboutik = Hiboutik::apiConnect($config);
       foreach ($_POST['line_items'] as $item) {
+        if ($config['HIBOUTIK_SHIPPING_PRODUCT_ID'] = $item['product_id']) {
+          continue;
+        }
+        if (!isset($item['product_barcode'])) {
+//           $json_msg->alert('warning', "Product does not have a barcode: '{$item['product_model']}', id {$item['product_id']}. Skipping...");
+          continue;
+        }
         $id = Hiboutik::getIdByReferenceFromAttr($item['product_barcode']);
         if ($id) {
           $id_ref = Hiboutik::getAttributeIdByRef($item['product_barcode']);
@@ -81,14 +100,11 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
           StockAvailable::setQuantity($id, $id_ref, $quantity);
         }
       }
-      if ($json_msg->message === '') {
-        $json_msg->alert('success', 'Synchronisation avec Prestashop effectuée');
-      }
+      $json_msg->alert('success', 'Sale successfully synchronized with Prestashop');
     } else {
       $json_msg->alert('warning', 'Warning: No products received from the Hiboutik webhook. Unable to synchronize sale '.$_POST['sale_id'].'.');
     }
     $json_msg->show();
     exit;
   }
-
 }

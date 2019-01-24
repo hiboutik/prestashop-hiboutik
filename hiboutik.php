@@ -289,6 +289,13 @@ HTML;
         $vendor_id = (int) $config['HIBOUTIK_VENDOR_ID'];
         $store_id = (int) $config['HIBOUTIK_STORE_ID'];
 
+        // Sale comments
+        $messages_vente = (new Message())->getMessagesByOrderId($orderParam['id_order']);
+        $message = '';
+        foreach ($messages_vente as $msg) {
+          $message .= $msg['message'];
+        }
+
         // Le client existe?
         if (!empty($customer)) {
           $client_hiboutik = $hiboutik->get('/customers/search/', [
@@ -355,7 +362,6 @@ HTML;
           $product_hiboutik = $hiboutik->get("/products/search/barcode/$bcProduct/");
           if (!$hiboutik->request_ok or isset($product_hiboutik['error'])) {
             $message_retour[] = 'Error getting product id';
-            return;
           }
           //si on a trouvé un produit a partir du code barre alors on récupère product_id & product_size
           if (isset($product_hiboutik[0])) {
@@ -400,39 +406,39 @@ HTML;
             ]);
             $message_retour[] = "Product $my_product_id x$my_quantity ($my_variation_id) #$bcProduct -> error";
           }
-
-          //gestion de la livraison
-          $carrier = new Carrier($fields['id_carrier']);
-          $name_livraison = $carrier->name;
-          $method_id_livraison = $carrier->shipping_method;
-          $commentaires_livraison = "$name_livraison\n$method_id_livraison";
-
-          $my_product_price = $fields['total_shipping_tax_incl'];
-          $message_retour[] = "Delivery $my_product_price added";
-          //ajout de la livraison
-          $hibou_add_product = $hiboutik->post('/sales/add_product/', [
-            'sale_id'          => $hibou_sale_id,
-            'product_id'       => $config['HIBOUTIK_SHIPPING_PRODUCT_ID'],
-            'size_id'          => 0,
-            'quantity'         => 1,
-            'product_price'    => $my_product_price,
-            'stock_withdrawal' => 1,
-            'product_comments' => $commentaires_livraison
-          ]);
-
-          //commentaires de la vente
-          $hibou_add_product = $hiboutik->post('/sales/comments/', [
-            'sale_id'  => $hibou_sale_id,
-            'comments' => "order_id : $wc_order_id\nComments : $customer_note"
-          ]);
-
-          //identifiant unique de la vente
-          $hibou_update_sale_ext_ref = $hiboutik->put("/sale/$hibou_sale_id", [
-            'sale_id'        => $hibou_sale_id,
-            'sale_attribute' => "ext_ref",
-            'new_value'      => $config['HIBOUTIK_SALE_ID_PREFIX'].$orderParam['id_order']
-          ]);
         }
+
+        //gestion de la livraison
+        $carrier = new Carrier($fields['id_carrier']);
+        $name_livraison = $carrier->name;
+        $method_id_livraison = $carrier->shipping_method;
+        $commentaires_livraison = "$name_livraison\n$method_id_livraison";
+
+        $my_product_price = $fields['total_shipping_tax_incl'];
+        $message_retour[] = "Delivery $my_product_price added";
+        //ajout de la livraison
+        $hibou_add_product = $hiboutik->post('/sales/add_product/', [
+          'sale_id'          => $hibou_sale_id,
+          'product_id'       => $config['HIBOUTIK_SHIPPING_PRODUCT_ID'],
+          'size_id'          => 0,
+          'quantity'         => 1,
+          'product_price'    => $my_product_price,
+          'stock_withdrawal' => 1,
+          'product_comments' => $commentaires_livraison
+        ]);
+
+        //commentaires de la vente
+        $hibou_add_product = $hiboutik->post('/sales/comments/', [
+          'sale_id'  => $hibou_sale_id,
+          'comments' => "order_id : {$config['HIBOUTIK_SALE_ID_PREFIX']}{$orderParam['id_order']} - {$fields['reference']}".($message ? "\nComments : $message" : '')
+        ]);
+
+        //identifiant unique de la vente
+        $hibou_update_sale_ext_ref = $hiboutik->put("/sale/$hibou_sale_id", [
+          'sale_id'        => $hibou_sale_id,
+          'sale_attribute' => "ext_ref",
+          'new_value'      => $config['HIBOUTIK_SALE_ID_PREFIX'].$orderParam['id_order']
+        ]);
 
       } else {
         $message_retour[] = "Error connecting to Hiboutik API";
@@ -454,13 +460,13 @@ HTML;
       $hiboutik = self::apiConnect($config);
       $stock_available = $hiboutik->get('/stock_available/warehouse_id/' . $config['HIBOUTIK_STORE_ID']);
       if ($hiboutik->request_ok) {
-//         print_r($stock_available);
         foreach ($stock_available as $item) {
           $id_ref = 0;
-          if ($item['product_size'] != 0) {
+          $id = self::getIdByReference($item['product_barcode']);
+          if (!$id) {
+            $id = self::getIdByReferenceFromAttr($item['product_barcode']);
             $id_ref = self::getAttributeIdByRef($item['product_barcode']);
           }
-          $id = self::getIdByReference($item['product_barcode']);
           StockAvailable::setQuantity((int) $id, $id_ref, $item['stock_available']);
         }
       } else {
