@@ -22,7 +22,7 @@ class Hiboutik extends Module
   {
     $this->name = 'hiboutik';
     $this->tab = 'quick_bulk_update';
-    $this->version = '1.1.0';
+    $this->version = '1.2.0';
     $this->author = 'Hiboutik & Murelh Ntyandi';
     $this->need_instance = 0;
     $this->ps_versions_compliancy = [
