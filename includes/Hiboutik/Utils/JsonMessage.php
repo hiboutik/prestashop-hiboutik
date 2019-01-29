@@ -1,9 +1,9 @@
 <?php
-namespace Hiboutik;
+namespace Hiboutik\Utils;
 
 
 /**
- * @package Hiboutik\HiboutikJsonMessage
+ * @package JsonMessage
  *
  * @version 1.0.0
  * @author  Hiboutik
@@ -13,7 +13,7 @@ namespace Hiboutik;
  *
  * Manage responses to Hiboutik webhooks
  */
-class HiboutikJsonMessage
+class JsonMessage
 {
   /** @var string $message */
   public $message = '';

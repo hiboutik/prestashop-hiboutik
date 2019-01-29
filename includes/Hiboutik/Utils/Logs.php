@@ -1,8 +1,8 @@
 <?php
-namespace Hiboutik;
+namespace Hiboutik\Utils;
 
 
-class HiboutikLog
+class Logs
 {
   /** @var string Destination */
   public static $destination = __DIR__.'default.log';
