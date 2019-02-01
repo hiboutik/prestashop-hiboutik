@@ -41,14 +41,14 @@ class HPUtil
           'name' => 'HIBOUTIK_ACCOUNT',
           'type' => 'text', 'size' => 255, 'required' => true,
           'default' => '',
-          'desc' => self::$module->l('If your Hiboutik URL is <strong>https://<span class="text-danger">my_account</span>.hiboutik.com/</strong>, your Hiboutik account is <strong>my_account</strong>.')
+          'desc' => self::$module->l('If your Hiboutik URL is').' <strong>https://<span class="text-danger">my_account</span>.hiboutik.com,</strong>'.self::$module->l('your Hiboutik account is').' <strong class="text-danger">my_account.</strong>'
         ],
         'HIBOUTIK_USER' => [
           'label' => self::$module->l('Email Address', 'HPUtil'),
           'name' => 'HIBOUTIK_USER',
           'type' => 'text', 'size' => 255, 'required' => true,
           'default' => '',
-          'desc' => 'Your Hiboutik e-mail address is mentioned on Hiboutik at <strong>Settings</strong> -> <strong>User</strong> -> <strong>API</strong>.'
+          'desc' => self::$module->l('Your Hiboutik e-mail address is mentioned on Hiboutik at').' <strong>'.self::$module->l('Settings').'</strong> -> <strong>'.self::$module->l('User').'</strong> -> <strong>API</strong>.'
         ],
         'HIBOUTIK_KEY' => [
           'label' => self::$module->l('API Key', 'HPUtil'),
@@ -63,7 +63,7 @@ class HPUtil
           'placeholder' => '0',
           'default' => 'no',
           'type' => 'text', 'size' => 255, 'required' => false,
-          'desc' => 'Your Hiboutik OAuth token. <strong>Type <span class="text-danger">no</span> if basic authentication is used</strong>'
+          'desc' => self::$module->l('Your Hiboutik OAuth token.').self::$module->l('Basic authentication : ').' <strong class="text-danger">no</strong>'
         ],
         'HIBOUTIK_STORE_ID' => [
           'label' => self::$module->l('Store ID', 'HPUtil'),
@@ -71,7 +71,7 @@ class HPUtil
           'placeholder' => '1',
           'default' => '1',
           'type' => 'text', 'size' => 255, 'required' => true,
-          'desc' => 'If you do not know, put : 1. Or contact us.'
+          'desc' => self::$module->l('If you do not know, put: 1. Or contact us.')
         ],
         'HIBOUTIK_VENDOR_ID' => [
           'label' => self::$module->l('Vendor ID', 'HPUtil'),
@@ -79,7 +79,7 @@ class HPUtil
           'placeholder' => '1',
           'default' => '1',
           'type' => 'text', 'size' => 255, 'required' => true,
-          'desc' => 'The vendor ID under which the synchronization will be made.<br>If you do not know, put : 1. Or contact us.'
+          'desc' => self::$module->l('The vendor ID under which the synchronization will be made.').'<br>'.self::$module->l('If you do not know, put : 1. Or contact us.')
         ],
         'HIBOUTIK_SHIPPING_PRODUCT_ID' => [
           'label' => self::$module->l('Shipping Product ID', 'HPUtil'),
@@ -87,7 +87,7 @@ class HPUtil
           'placeholder' => '1',
           'default' => '1',
           'type' => 'text', 'size' => 255, 'required' => false,
-          'desc' => 'The ID of the product in Hiboutik that designates shipping charges'
+          'desc' => self::$module->l('The ID of the product in Hiboutik that designates shipping charges')
         ],
         'HIBOUTIK_SALE_ID_PREFIX' => [
           'label' => self::$module->l('Hiboutik Sale ID Prefix', 'HPUtil'),
@@ -96,7 +96,7 @@ class HPUtil
           'placeholder' => 'ps_',
           'default' => 'ps_',
           'placeholder' => 'ps_',
-          'desc' => 'If you want to sort your sales in Hiboutik with ease, you can add a prefix to those who come from Prestashop.<br>Type this prefix here.'
+          'desc' => self::$module->l('If you want to sort your sales in Hiboutik with ease, you can add a prefix to those who come from Prestashop.')
         ]
       ];
     }
