@@ -74,7 +74,6 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
       $sale_no = substr($_POST['sale_ext_ref'], strlen($config['HIBOUTIK_SALE_ID_PREFIX']));
       $order = new Order($sale_no);
       if ($order->current_state !== null) {
-        $json_msg->alert('warning', 'Sale created in Prestashop. Exiting.')->show();
         exit();
       }
     }
