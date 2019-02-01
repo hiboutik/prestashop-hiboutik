@@ -86,13 +86,14 @@ class Hiboutik extends Module
 
     $settings = HPUtil::getSettings();
     if (Tools::isSubmit('submit' . $this->name)) {
-      foreach ($settings as $key => $anInput) {
-        $settings[$key]['safe_value'] = strval(Tools::getValue($anInput['name']));
-        if (!$settings[$key]['safe_value'] || empty($settings[$key]['safe_value']) || !Validate::isGenericName($settings[$key]['safe_value'])) {
-          $output[] = $this->displayError('<li><strong>' . $anInput['label'] . ' : </strong>'.$this->l('Invalid Configuration value').'</li>');
+      foreach ($settings as $input) {
+        $value = strval(Tools::getValue($input['name']));
+        // HIBOUTIK_SHIPPING_PRODUCT_ID should be able to take the value 0
+        if ($value === false or !Validate::isGenericName($value)) {
+          $output[] = $this->displayError('<li><strong>' . $input['label'] . ' : </strong>'.$this->l('Invalid Configuration value').'</li>');
         } else {
-          Configuration::updateValue($anInput['name'], $settings[$key]['safe_value']);
-          $output[] = $this->displayConfirmation('<li><strong>' . $anInput['label'] . ' : </strong>'.$this->l('Settings updated').'</li>');
+          Configuration::updateValue($input['name'], $value);
+          $output[] = $this->displayConfirmation('<li><strong>' . $input['label'] . ' : </strong>'.$this->l('Settings updated').'</li>');
         }
       }
     }
@@ -375,12 +376,18 @@ HTML;
 
         //si il y a une quelconque erreur alors on ajoute a nouveau le produit mais sans sortie stock (cas du produit géré en stock mais indisponible)
         if (isset($hibou_add_product['error'])) {
-          $commentaires = "Results: " . print_r( $hibou_add_product, true );
-          if ($hibou_add_product['details']['product_id'] == "This function does not handle packages") {
-            $commentaires .= "\n\nid_prod : $id_prod & id_taille : $id_taille";
-            $id_prod = 0;
-            $id_taille = 0;
+//           $commentaires = "Results: " . print_r($hibou_add_product, true);
+          $id_prod = 0;
+          $id_taille = 0;
+          $commentaires = "Error: {$hibou_add_product['error_description']};";
+          if (
+            isset($hibou_add_product['details']) and
+            isset($hibou_add_product['details']['product_id']) and
+            $hibou_add_product['details']['product_id'] === "This function does not handle packages"
+          ) {
+            $commentaires .= ' '.$this->l('This function does not handle packages');
           }
+          $commentaires .= "\n\n{$item['product_name']}, id_prod : $id_prod & id_taille : $id_taille";
           $hibou_add_product = $hiboutik->post('/sales/add_product/', [
             'sale_id'          => $hibou_sale_id,
             'product_id'       => $id_prod,
@@ -398,7 +405,7 @@ HTML;
       $carrier = new Carrier($order->id_carrier);
       $name_livraison = $carrier->name;
       $method_id_livraison = $carrier->shipping_method;
-      $commentaires_livraison = "$name_livraison\n$method_id_livraison";
+      $commentaires_livraison = ($this->l('Carrier: '))."$name_livraison\n".($this->l('Shipping method id: '))."$method_id_livraison";
 
       $my_product_price = $order->total_shipping_tax_incl;
       $message_retour[] = "Delivery $my_product_price added";

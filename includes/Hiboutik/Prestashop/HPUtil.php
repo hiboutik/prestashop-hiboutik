@@ -36,28 +36,28 @@ class HPUtil
         self::$module = Module::getInstanceByName(self::MODULE_NAME);
       }
       self::$settingInput = [
-        'HIBOUTIK_ACCOUNT' => [
+        [
           'label' => self::$module->l('Account name', 'HPUtil'),
           'name' => 'HIBOUTIK_ACCOUNT',
           'type' => 'text', 'size' => 255, 'required' => true,
           'default' => '',
           'desc' => self::$module->l('If your Hiboutik URL is').' <strong>https://<span class="text-danger">my_account</span>.hiboutik.com,</strong>'.self::$module->l('your Hiboutik account is').' <strong class="text-danger">my_account.</strong>'
         ],
-        'HIBOUTIK_USER' => [
+        [
           'label' => self::$module->l('Email Address', 'HPUtil'),
           'name' => 'HIBOUTIK_USER',
           'type' => 'text', 'size' => 255, 'required' => true,
           'default' => '',
           'desc' => self::$module->l('Your Hiboutik e-mail address is mentioned on Hiboutik at').' <strong>'.self::$module->l('Settings').'</strong> -> <strong>'.self::$module->l('User').'</strong> -> <strong>API</strong>.'
         ],
-        'HIBOUTIK_KEY' => [
+        [
           'label' => self::$module->l('API Key', 'HPUtil'),
           'name' => 'HIBOUTIK_KEY',
           'type' => 'text', 'size' => 255, 'required' => true,
           'default' => '',
           'desc' => 'It should looks like a long string. You will find it on Hiboutik at <strong>Settings</strong> -> <strong>User</strong> -> <strong>API</strong>'
         ],
-        'HIBOUTIK_OAUTH_TOKEN' => [
+        [
           'label' => self::$module->l('Oauth Token', 'HPUtil'),
           'name' => 'HIBOUTIK_OAUTH_TOKEN',
           'placeholder' => '0',
@@ -65,7 +65,7 @@ class HPUtil
           'type' => 'text', 'size' => 255, 'required' => false,
           'desc' => self::$module->l('Your Hiboutik OAuth token.').self::$module->l('Basic authentication : ').' <strong class="text-danger">no</strong>'
         ],
-        'HIBOUTIK_STORE_ID' => [
+        [
           'label' => self::$module->l('Store ID', 'HPUtil'),
           'name' => 'HIBOUTIK_STORE_ID',
           'placeholder' => '1',
@@ -73,7 +73,7 @@ class HPUtil
           'type' => 'text', 'size' => 255, 'required' => true,
           'desc' => self::$module->l('If you do not know, put: 1. Or contact us.')
         ],
-        'HIBOUTIK_VENDOR_ID' => [
+        [
           'label' => self::$module->l('Vendor ID', 'HPUtil'),
           'name' => 'HIBOUTIK_VENDOR_ID',
           'placeholder' => '1',
@@ -81,15 +81,15 @@ class HPUtil
           'type' => 'text', 'size' => 255, 'required' => true,
           'desc' => self::$module->l('The vendor ID under which the synchronization will be made.').'<br>'.self::$module->l('If you do not know, put : 1. Or contact us.')
         ],
-        'HIBOUTIK_SHIPPING_PRODUCT_ID' => [
+        [
           'label' => self::$module->l('Shipping Product ID', 'HPUtil'),
           'name' => 'HIBOUTIK_SHIPPING_PRODUCT_ID',
-          'placeholder' => '1',
-          'default' => '1',
+          'placeholder' => '0',
+          'default' => '0',
           'type' => 'text', 'size' => 255, 'required' => false,
           'desc' => self::$module->l('The ID of the product in Hiboutik that designates shipping charges')
         ],
-        'HIBOUTIK_SALE_ID_PREFIX' => [
+        [
           'label' => self::$module->l('Hiboutik Sale ID Prefix', 'HPUtil'),
           'name' => 'HIBOUTIK_SALE_ID_PREFIX',
           'type' => 'text', 'size' => 255, 'required' => false,
@@ -110,8 +110,8 @@ class HPUtil
   public static function getHiboutikConfiguration() {
     $result = [];
     $settings = self::getSettings();
-    foreach ($settings as $key => $anInput) {
-      $result[$key] = Configuration::get($anInput['name']);
+    foreach ($settings as $input) {
+      $result[$input['name']] = Configuration::get($input['name']);
     }
     return $result;
   }
