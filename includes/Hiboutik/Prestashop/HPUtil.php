@@ -9,7 +9,7 @@ use \Configuration;
 
 
 /**
- * @package Hiboutik\Prestashop\Util
+ * @package Hiboutik\Prestashop\HPUtil
  */
 class HPUtil
 {
@@ -104,9 +104,9 @@ class HPUtil
   }
 
 
-  /**
-   * Get configuration
-   */
+/**
+  * Get configuration
+  */
   public static function getHiboutikConfiguration() {
     $result = [];
     $settings = self::getSettings();

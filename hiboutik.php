@@ -1,10 +1,5 @@
 <?php
 
-//use PrestaShop\PrestaShop\Core\Product\Search\ProductSearchQuery;
-use PrestaShop\PrestaShop\Core\Stock\Stock;
-use PrestaShop\PrestaShop\Core\Order\Order;
-use PrestaShopBundle\Controller\Admin\FrameworkBundleAdminController;
-
 use Hiboutik\Prestashop\HPUtil;
 
 
@@ -22,7 +17,7 @@ class Hiboutik extends Module
   {
     $this->name = 'hiboutik';
     $this->tab = 'quick_bulk_update';
-    $this->version = '1.2.0';
+    $this->version = '1.2.1';
     $this->author = 'Hiboutik & Murelh Ntyandi';
     $this->need_instance = 0;
     $this->ps_versions_compliancy = [
@@ -38,8 +33,8 @@ class Hiboutik extends Module
 
     $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
 
-    if (!Configuration::get('MYMODULE_NAME')) {
-      $this->warning = $this->l('No name provided');
+    if (!Configuration::get('HIBOUTIK_ACCOUNT') or !Configuration::get('HIBOUTIK_USER')) {
+      $this->warning = $this->l('Hiboutik module is not configured');
     }
   }
 
@@ -267,16 +262,15 @@ HTML;
         return;
       }
 
-      $order = new OrderCore($orderParam['id_order']);
-      $fields = $order->getFields();
+      $order = new Order($orderParam['id_order']);
 
       $orderDetail = new OrderDetail();
       $currentOrderDetailList = $orderDetail->getList($orderParam['id_order']);
-      $customer = Context::getContext()->customer;
-      $customerInvoiceAddress = new Address($orderParam['cart']->id_address_invoice);
-      $customerDeliveryAddress = new Address($orderParam['cart']->id_address_delivery);
+      $customer = $order->getCustomer();
+      $customerInvoiceAddress = new Address($order->id_address_invoice);
+      $customerDeliveryAddress = new Address($order->id_address_delivery);
       $customerInvoiceCountry = new Country($customerInvoiceAddress->id_country);
-      $customerCurrency = (new Currency($orderParam['cart']->id_currency))->iso_code;
+      $customerCurrency = (new Currency($order->id_currency))->iso_code;
       $vendor_id = (int) $config['HIBOUTIK_VENDOR_ID'];
       $store_id = (int) $config['HIBOUTIK_STORE_ID'];
 
@@ -288,6 +282,7 @@ HTML;
       }
 
       // Le client existe?
+      $hibou_customer = 0;
       if (!empty($customer)) {
         $client_hiboutik = $hiboutik->get('/customers/search/', [
           'email' => $customer->email
@@ -313,7 +308,7 @@ HTML;
 
       $prices_without_taxes = 1;
       $duty_free_sale = 1;
-      if ($fields['total_paid_tax_incl'] != $fields['total_paid_tax_excl']) {
+      if ($order->total_paid_tax_incl != $order->total_paid_tax_excl) {
         $prices_without_taxes = 0;
         $duty_free_sale = 0;
       }
@@ -400,12 +395,12 @@ HTML;
       }
 
       //gestion de la livraison
-      $carrier = new Carrier($fields['id_carrier']);
+      $carrier = new Carrier($order->id_carrier);
       $name_livraison = $carrier->name;
       $method_id_livraison = $carrier->shipping_method;
       $commentaires_livraison = "$name_livraison\n$method_id_livraison";
 
-      $my_product_price = $fields['total_shipping_tax_incl'];
+      $my_product_price = $order->total_shipping_tax_incl;
       $message_retour[] = "Delivery $my_product_price added";
       //ajout de la livraison
       $hibou_add_product = $hiboutik->post('/sales/add_product/', [
@@ -419,9 +414,9 @@ HTML;
       ]);
 
       //commentaires de la vente
-      $hibou_add_product = $hiboutik->post('/sales/comments/', [
+      $hibou_add_comment = $hiboutik->post('/sales/comments/', [
         'sale_id'  => $hibou_sale_id,
-        'comments' => "order_id : {$config['HIBOUTIK_SALE_ID_PREFIX']}{$orderParam['id_order']} - {$fields['reference']}".($message ? "\nComments : $message" : '')
+        'comments' => "order_id : {$config['HIBOUTIK_SALE_ID_PREFIX']}{$orderParam['id_order']} - ".$order->reference.($message ? "\nComments : $message" : '')
       ]);
 
       //identifiant unique de la vente

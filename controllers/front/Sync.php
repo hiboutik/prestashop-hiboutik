@@ -1,5 +1,4 @@
 <?php
-use PrestaShop\PrestaShop\Core\Order\OrderCore;
 use Hiboutik\Prestashop\HPUtil;
 use Hiboutik\Utils\JsonMessage;
 use Hiboutik\Utils\Logs;
@@ -43,11 +42,11 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
  */
   public function postProcess()
   {
+//     Logs::$destination = _PS_MODULE_DIR_.'/hiboutik/log/hiboutik.log';
+//     Logs::write($_POST);
     if (empty($_POST)) {
       return;
     }
-//     Logs::$destination = _PS_MODULE_DIR_.'/hiboutik/log/hiboutik.log';
-//     Logs::write($_POST);
 
     $json_msg = new JsonMessage();
 
@@ -63,7 +62,7 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
       exit();
     }
 
-    if (empty($_POST) or !isset($_POST['sale_id'])) {
+    if (!isset($_POST['sale_id'])) {
       $json_msg->alert('warning', $this->l('Prestashop: sync route has been accessed but no data was received'))->show();
       exit();
     }
@@ -75,6 +74,7 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
       $sale_no = substr($_POST['sale_ext_ref'], strlen($config['HIBOUTIK_SALE_ID_PREFIX']));
       $order = new Order($sale_no);
       if ($order->current_state !== null) {
+        $json_msg->alert('warning', 'Sale created in Prestashop. Exiting.')->show();
         exit();
       }
     }
@@ -82,7 +82,7 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
     if (isset($_POST['line_items'])) {
       $hiboutik = HPUtil::apiConnect($config);
       foreach ($_POST['line_items'] as $item) {
-        if ($config['HIBOUTIK_SHIPPING_PRODUCT_ID'] = $item['product_id']) {
+        if ($config['HIBOUTIK_SHIPPING_PRODUCT_ID'] == $item['product_id']) {
           continue;
         }
         if (!isset($item['product_barcode'])) {
