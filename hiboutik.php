@@ -17,7 +17,7 @@ class Hiboutik extends Module
   {
     $this->name = 'hiboutik';
     $this->tab = 'quick_bulk_update';
-    $this->version = '1.2.1';
+    $this->version = '1.2.2';
     $this->author = 'Hiboutik & Murelh Ntyandi';
     $this->need_instance = 0;
     $this->ps_versions_compliancy = [
@@ -376,7 +376,6 @@ HTML;
 
         //si il y a une quelconque erreur alors on ajoute a nouveau le produit mais sans sortie stock (cas du produit géré en stock mais indisponible)
         if (isset($hibou_add_product['error'])) {
-//           $commentaires = "Results: " . print_r($hibou_add_product, true);
           $id_prod = 0;
           $id_taille = 0;
           $commentaires = "Error: {$hibou_add_product['error_description']};";
