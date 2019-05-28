@@ -13,17 +13,6 @@ use Hiboutik\Utils\Logs;
  */
 class HiboutikSyncModuleFrontController extends ModuleFrontController
 {
-  public function __construct()
-  {
-    $this->html = '';
-    $this->display = 'view';
-    $this->meta_title = $this->l('metatitle');
-    $this->toolbar_title = $this->l('tollbartitle');
-
-    parent::__construct();
-  }
-
-
   /**
    * For GET requests
    *
@@ -58,12 +47,12 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
     }
     $hash = isset($_GET[HPUtil::SECURITY_GET_PARAM]) ? $_GET[HPUtil::SECURITY_GET_PARAM] : null;
     if ($hash === null or !HPUtil::myHash($config['HIBOUTIK_ACCOUNT'], $key, $hash)) {
-      $json_msg->alert('warning', $this->l('Prestashop: invalid authentication'))->show();
+      $json_msg->alert('warning', $this->module->l('Prestashop: invalid authentication'))->show();
       exit();
     }
 
     if (!isset($_POST['sale_id'])) {
-      $json_msg->alert('warning', $this->l('Prestashop: sync route has been accessed but no data was received'))->show();
+      $json_msg->alert('warning', $this->module->l('Prestashop: sync route has been accessed but no data was received'))->show();
       exit();
     }
 
@@ -98,7 +87,7 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
         }
 
         if (!$id) {
-          $i18n_cannot_find_product = $this->l('Prestashop: Cannot find product in Prestashop using barcode: \'%s\', id %d. Skipping...');
+          $i18n_cannot_find_product = $this->module->l('Prestashop: Cannot find product in Prestashop using barcode: \'%s\', id %d. Skipping...');
           $json_msg->alert('warning', sprintf($i18n_cannot_find_product, $item['product_model'], $item['product_id']));
           continue;
         } else {
@@ -113,9 +102,9 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
           StockAvailable::setQuantity($id, $id_ref, $quantity);
         }
       }
-      $json_msg->alert('success', $this->l('Prestashop: Sale successfully synchronized'));
+      $json_msg->alert('success', $this->module->l('Prestashop: Sale successfully synchronized'));
     } else {
-      $i18n_no_products_received = $this->l('Prestashop: No products received from the Hiboutik webhook. Unable to synchronize sale %d');
+      $i18n_no_products_received = $this->module->l('Prestashop: No products received from the Hiboutik webhook. Unable to synchronize sale %d');
       $json_msg->alert('warning', sprintf($i18n_no_products_received, $_POST['sale_id']));
     }
     $json_msg->show();

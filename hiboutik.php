@@ -39,9 +39,9 @@ class Hiboutik extends Module
   }
 
 
-/**
- * Installation
- */
+  /**
+   * Installation
+   */
   public function install()
   {
     if (!parent::install()) {
@@ -66,9 +66,9 @@ class Hiboutik extends Module
   }
 
 
-/**
- * Unstallation
- */
+  /**
+   * Uninstallation
+   */
   public function uninstall() {
     if (!parent::uninstall() || !Configuration::deleteByName('MYMODULE_NAME')) {
       return false;
@@ -78,9 +78,9 @@ class Hiboutik extends Module
   }
 
 
-/**
- * Manage form submit
- */
+  /**
+   * Manage submitted form
+   */
   public function getContent() {
     $output = [];
 
@@ -92,7 +92,7 @@ class Hiboutik extends Module
         if ($value === false or !Validate::isGenericName($value)) {
           $output[] = $this->displayError('<li><strong>' . $input['label'] . ' : </strong>'.$this->l('Invalid Configuration value').'</li>');
         } else {
-          Configuration::updateValue($input['name'], $value);
+          Configuration::updateValue($input['name'], trim($value));
           $output[] = $this->displayConfirmation('<li><strong>' . $input['label'] . ' : </strong>'.$this->l('Settings updated').'</li>');
         }
       }
@@ -115,9 +115,9 @@ class Hiboutik extends Module
   }
 
 
-/**
- * Create HTML form
- */
+  /**
+   * Create HTML form
+   */
   public function displayForm() {
     // Get default language
     $defaultLang = (int) Configuration::get('PS_LANG_DEFAULT');
@@ -193,16 +193,15 @@ class Hiboutik extends Module
 </form>
 HTML;
 
-  // Show webhook link
-  // Security
-  $key = Configuration::get('HIBOUTIK_KEY');
-  if (!$key) {
-    $key = Configuration::get('HIBOUTIK_OAUTH_TOKEN');
-  }
-  $link = Context::getContext()->link->getModuleLink('hiboutik', 'Sync');
-  $hash = HPUtil::myHash(Configuration::get('HIBOUTIK_ACCOUNT'), $key);
-  $link .= '&'.HPUtil::SECURITY_GET_PARAM."=$hash";
-  $link_html = <<<HTML
+    // Show webhook link
+    // Security
+    $key = Configuration::get('HIBOUTIK_KEY');
+    if (!$key) {
+      $key = Configuration::get('HIBOUTIK_OAUTH_TOKEN');
+    }
+    $hash = HPUtil::myHash(Configuration::get('HIBOUTIK_ACCOUNT'), $key);
+    $link = Context::getContext()->link->getModuleLink('hiboutik', 'Sync', [HPUtil::SECURITY_GET_PARAM => $hash]);
+    $link_html = <<<HTML
 <div class="panel">
 <div class="panel-heading">Webhook</div>
   $link
@@ -213,11 +212,11 @@ HTML;
   }
 
 
-/**
- * Sync stock from Hiboutik to Prestashop
- *
- * The link between Prestashop and Hiboutik is the product's barcode in Hiboutik
- */
+  /**
+   * Sync stock from Hiboutik to Prestashop
+   *
+   * The link between Prestashop and Hiboutik is the product's barcode in Hiboutik
+   */
   protected function synchronizeStock() {
     $config = HPUtil::getHiboutikConfiguration();
     if (empty($config['HIBOUTIK_ACCOUNT']) or empty($config['HIBOUTIK_USER'])) {
@@ -244,12 +243,12 @@ HTML;
   }
 
 
-/**
- * Synchronize sale from Prestashop to Hiboutik
- *
- * @param array $orderParam
- * @return void
- */
+  /**
+   * Synchronize sale from Prestashop to Hiboutik
+   *
+   * @param array $orderParam
+   * @return void
+   */
   public function hookActionPaymentConfirmation($orderParam) {
     $config = HPUtil::getHiboutikConfiguration();
     $message_retour = [];
