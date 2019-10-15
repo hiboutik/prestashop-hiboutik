@@ -61,6 +61,22 @@ with this :
           }
 ```
 
+### How to close sale after sync
+
+In https://github.com/hiboutik/prestashop-hiboutik/blob/master/hiboutik.php, remplace :
+```php
+      //identifiant unique de la vente
+```
+with this :
+```php
+
+      //Close sale
+      $hibou_close_sale = $hiboutik->post('/sales/close/', [
+      'sale_id'         => $hibou_sale_id
+      ]);
+
+      //identifiant unique de la vente
+```
 
 ## Credits
 
