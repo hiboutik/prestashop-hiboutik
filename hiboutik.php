@@ -375,14 +375,14 @@ HTML;
 
         //si il y a une quelconque erreur alors on ajoute a nouveau le produit mais sans sortie stock (cas du produit géré en stock mais indisponible)
         if (isset($hibou_add_product['error'])) {
-          $id_prod = 0;
-          $id_taille = 0;
           $commentaires = "Error: {$hibou_add_product['error_description']};";
           if (
             isset($hibou_add_product['details']) and
             isset($hibou_add_product['details']['product_id']) and
             $hibou_add_product['details']['product_id'] === "This function does not handle packages"
           ) {
+          $id_prod = 0;
+          $id_taille = 0;
             $commentaires .= ' '.$this->l('This function does not handle packages');
           }
           $commentaires .= "\n\n{$item['product_name']}, id_prod : $id_prod & id_taille : $id_taille";
