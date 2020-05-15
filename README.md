@@ -78,6 +78,26 @@ with this :
       //identifiant unique de la vente
 ```
 
+
+### How to set the payment method
+
+In https://github.com/hiboutik/prestashop-hiboutik/blob/master/hiboutik.php, remplace :
+```php
+      //identifiant unique de la vente
+```
+with this :
+```php
+
+      //Set payment method
+      $hibou_set_payment = $hiboutik->put("/sale/$hibou_sale_id/", [
+      'sale_attribute'  => 'payment',
+      'new_value'       => 'XXX'
+      ]);
+
+      //identifiant unique de la vente
+```
+
+
 ## Credits
 
 Many have contributed to this plugin effort, from direct contributions of code, to contributions of projects.
