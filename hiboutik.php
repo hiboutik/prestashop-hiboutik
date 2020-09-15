@@ -264,8 +264,7 @@ HTML;
 
       $order = new Order($orderParam['id_order']);
 
-      $orderDetail = new OrderDetail();
-      $currentOrderDetailList = $orderDetail->getList($orderParam['id_order']);
+      $currentOrderDetailList = OrderDetail::getList($orderParam['id_order']);
       $customer = $order->getCustomer();
       $customerInvoiceAddress = new Address($order->id_address_invoice);
       $customerDeliveryAddress = new Address($order->id_address_delivery);
@@ -273,6 +272,22 @@ HTML;
       $customerCurrency = (new Currency($order->id_currency))->iso_code;
       $vendor_id = (int) $config['HIBOUTIK_VENDOR_ID'];
       $store_id = (int) $config['HIBOUTIK_STORE_ID'];
+      $cart = new Cart($order->id_cart);
+
+      // Check if the shipping fees are free
+      $free_shipping = false;
+      $cart_discounts = $cart->getDiscounts();// cart rules
+      $cart_applied_discounts_ids = $cart->getOrderedCartRulesIds();
+      foreach ($cart_applied_discounts_ids as $applied_discount_id) {
+        foreach ($cart_discounts as $cart_discount) {
+          if ($cart_discount['id_cart_rule'] === $applied_discount_id['id_cart_rule']) {
+            if ($cart_discount['free_shipping'] == 1) {
+              $free_shipping = true;
+              break;
+            }
+          }
+        }
+      }
 
       // Sale comments
       $messages_vente = (new Message())->getMessagesByOrderId($orderParam['id_order']);
@@ -381,8 +396,8 @@ HTML;
             isset($hibou_add_product['details']['product_id']) and
             $hibou_add_product['details']['product_id'] === "This function does not handle packages"
           ) {
-          $id_prod = 0;
-          $id_taille = 0;
+            $id_prod = 0;
+            $id_taille = 0;
             $commentaires .= ' '.$this->l('This function does not handle packages');
           }
           $commentaires .= "\n\n{$item['product_name']}, id_prod : $id_prod & id_taille : $id_taille";
@@ -399,24 +414,45 @@ HTML;
         }
       }
 
+/*
+ * Gestion des remises
+ *
+ * les remises doivent etre calculées avant l'ajout des frais de livraison sur
+ * la vente
+ */
+      $shipping_fees = $prices_without_taxes ? $order->total_shipping_tax_excl : $order->total_shipping_tax_incl;
+      if ($order->total_discounts_tax_incl != 0) {
+        $discount_amount = $prices_without_taxes ? $order->total_discounts_tax_excl : $order->total_discounts_tax_incl;
+        if ($free_shipping) {
+          $discount_amount -= $shipping_fees;
+          $shipping_fees = 0;
+        }
+        $result_remise_globale = $hiboutik->post('/sales/add_global_discount', [
+          'sale_id'  => $hibou_sale_id,
+          'type'     => 1,// le montant de la remise est en valeur absolue
+          'amount'   => $discount_amount
+        ]);
+      }
+
       //gestion de la livraison
       $carrier = new Carrier($order->id_carrier);
       $name_livraison = $carrier->name;
       $method_id_livraison = $carrier->shipping_method;
       $commentaires_livraison = ($this->l('Carrier: '))."$name_livraison\n".($this->l('Shipping method id: '))."$method_id_livraison";
 
-      $my_product_price = $order->total_shipping_tax_incl;
-      $message_retour[] = "Delivery $my_product_price added";
+      $message_retour[] = "Delivery $shipping_fees added";
       //ajout de la livraison
       $hibou_add_product = $hiboutik->post('/sales/add_product/', [
         'sale_id'          => $hibou_sale_id,
         'product_id'       => $config['HIBOUTIK_SHIPPING_PRODUCT_ID'],
         'size_id'          => 0,
         'quantity'         => 1,
-        'product_price'    => $my_product_price,
+        'product_price'    => $shipping_fees,
         'stock_withdrawal' => 1,
         'product_comments' => $commentaires_livraison
       ]);
+
+
 
       //commentaires de la vente
       $hibou_add_comment = $hiboutik->post('/sales/comments/', [
@@ -430,7 +466,6 @@ HTML;
         'sale_attribute' => "ext_ref",
         'new_value'      => $config['HIBOUTIK_SALE_ID_PREFIX'].$orderParam['id_order']
       ]);
-
     } else {
       $message_retour[] = "Error connecting to Hiboutik API";
     }

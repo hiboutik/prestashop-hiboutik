@@ -35,7 +35,7 @@ Then follow the guide :
 
 ### How to sync all your warehouses
 
-In https://github.com/hiboutik/prestashop-hiboutik/blob/master/hiboutik.php, remplace :
+In https://github.com/hiboutik/prestashop-hiboutik/blob/master/hiboutik.php, replace :
 ```php
 $stock_available = $hiboutik->get('/stock_available/warehouse_id/' . $\config['HIBOUTIK_STORE_ID']);
 ```
@@ -44,7 +44,7 @@ with this :
 $stock_available = $hiboutik->get('/stock_available/all_wh/');
 ```
 
-In https://github.com/hiboutik/prestashop-hiboutik/blob/master/controllers/front/Sync.php, remplace :
+In https://github.com/hiboutik/prestashop-hiboutik/blob/master/controllers/front/Sync.php, replace :
 ```php
           foreach ($stocks_dispo as $stock) {
             if ($stock['warehouse_id'] == $config['HIBOUTIK_STORE_ID']) {
@@ -63,7 +63,7 @@ with this :
 
 ### How to close sale after sync
 
-In https://github.com/hiboutik/prestashop-hiboutik/blob/master/hiboutik.php, remplace :
+In https://github.com/hiboutik/prestashop-hiboutik/blob/master/hiboutik.php, replace :
 ```php
       //identifiant unique de la vente
 ```
@@ -81,7 +81,7 @@ with this :
 
 ### How to set the payment method
 
-In https://github.com/hiboutik/prestashop-hiboutik/blob/master/hiboutik.php, remplace :
+In https://github.com/hiboutik/prestashop-hiboutik/blob/master/hiboutik.php, replace :
 ```php
       //identifiant unique de la vente
 ```
