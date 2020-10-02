@@ -276,18 +276,11 @@ HTML;
 
       // Check if the shipping fees are free
       $free_shipping = false;
-      $cart_discounts = $cart->getDiscounts();// cart rules
-      $cart_applied_discounts_ids = $cart->getOrderedCartRulesIds();
-      foreach ($cart_applied_discounts_ids as $applied_discount_id) {
-        foreach ($cart_discounts as $cart_discount) {
-          if ($cart_discount['id_cart_rule'] === $applied_discount_id['id_cart_rule']) {
-            if ($cart_discount['free_shipping'] == 1) {
-              $free_shipping = true;
-              break;
-            }
-          }
-        }
+      $cart_rules = $cart->getCartRules(CartRule::FILTER_ACTION_SHIPPING);
+      if (!empty($cart_rules)) {
+        $free_shipping = true;
       }
+
 
       // Sale comments
       $messages_vente = (new Message())->getMessagesByOrderId($orderParam['id_order']);
@@ -414,7 +407,7 @@ HTML;
         }
       }
 
-/*
+/**
  * Gestion des remises
  *
  * les remises doivent etre calculées avant l'ajout des frais de livraison sur
