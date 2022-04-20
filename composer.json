@@ -1,0 +1,14 @@
+{
+    "name": "hiboutik/prestashop-hiboutik",
+    "description": "Open source module that allows you to synchronize Hiboutik POS software and Prestashop. All your online sales are automatically integrated in your Hiboutik account.",
+    "type": "prestashop-module",
+    "require": {
+        "php": ">=5.6",
+        "ext-curl": "*"
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "prepend-autoloader": false
+    }
+}
