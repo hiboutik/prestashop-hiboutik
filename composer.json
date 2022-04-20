@@ -1,5 +1,5 @@
 {
-    "name": "hiboutik/prestashop-hiboutik",
+    "name": "hiboutik/hiboutik",
     "description": "Open source module that allows you to synchronize Hiboutik POS software and Prestashop. All your online sales are automatically integrated in your Hiboutik account.",
     "type": "prestashop-module",
     "require": {
