@@ -70,8 +70,15 @@ class Hiboutik extends Module
    * Uninstallation
    */
   public function uninstall() {
-    if (!parent::uninstall() || !Configuration::deleteByName('MYMODULE_NAME')) {
+    if (!parent::uninstall()) {
       return false;
+    }
+
+    $settings = HPUtil::getSettings();
+    foreach ($settings as $anInput) {
+      if (!Configuration::deleteByName($anInput['name'])) {
+        return false;
+      }
     }
 
     return true;
