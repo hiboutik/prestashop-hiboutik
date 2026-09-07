@@ -31,6 +31,9 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
  */
   public function postProcess()
   {
+//     WARNING: $_POST contains raw webhook payload data (order/sale details).
+//     Do not re-enable the two lines below without making sure log/ is
+//     protected from direct HTTP access (see log/.htaccess).
 //     Logs::$destination = _PS_MODULE_DIR_.'/hiboutik/log/hiboutik.log';
 //     Logs::write($_POST);
     if (empty($_POST)) {
