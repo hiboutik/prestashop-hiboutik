@@ -93,11 +93,17 @@ class HiboutikSyncModuleFrontController extends ModuleFrontController
         } else {
           // Returns array with stocks for each store
           $stocks_dispo = $hiboutik->get("/stock_available/product_id_size/{$item['product_id']}/{$item['product_size']}");
+          $quantity = null;
           foreach ($stocks_dispo as $stock) {
             if ($stock['warehouse_id'] == $config['HIBOUTIK_STORE_ID']) {
               $quantity = $stock['stock_available'];
               break;
             }
+          }
+          if ($quantity === null) {
+            $i18n_no_stock_for_store = $this->module->l('Prestashop: No stock found in Hiboutik for product id %s in store %s. Skipping...');
+            $json_msg->alert('warning', sprintf($i18n_no_stock_for_store, $item['product_id'], $config['HIBOUTIK_STORE_ID']));
+            continue;
           }
           StockAvailable::setQuantity($id, $id_ref, $quantity);
         }
