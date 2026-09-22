@@ -95,7 +95,6 @@ class HPUtil
           'type' => 'text', 'size' => 255, 'required' => false,
           'placeholder' => 'ps_',
           'default' => 'ps_',
-          'placeholder' => 'ps_',
           'desc' => self::$module->l('If you want to sort your sales in Hiboutik with ease, you can add a prefix to those who come from Prestashop.')
         ]
       ];
